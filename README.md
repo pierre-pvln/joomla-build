@@ -6,7 +6,7 @@ http://www.pvln.nl/build-extensions <br/>
 
 Below folder structure should be present on the workstation on which development is done:
 ```
-extensionname\00_dev_code       folder with the code for the joomla extension, 
+extensionname\00_dev_code       folder with the code for the Joomla! extension, 
                                 which gets installed on the Joomla! website
              \02_build_process  folder with scripts to build the extension zipfile
                                 and deploy it to the Joomla! webserver
