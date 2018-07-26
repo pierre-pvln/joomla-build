@@ -16,10 +16,10 @@ extensionname\00_dev_code       folder with the code for the joomla extension, w
 <br/>
 The downloadable extension zip file is available at:
 ```
-http://download.pvln.nl/joomla/<extensiontype>/<extensionname>/
+download.pvln.nl/joomla/<extensiontype>/<extensionname>/
 ```
 <br/>
 The downloadable extension update xml file is available at:
 ```
-http://update.pvln.nl/joomla/<extensiontype>/<extensionname>/
+update.pvln.nl/joomla/<extensiontype>/<extensionname>/
 ```
