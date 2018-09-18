@@ -141,5 +141,7 @@ ECHO Error: %ERROR_MESSAGE%
 ECHO *******************
 
    
-:CLEAN_EXIT   
+:CLEAN_EXIT
+:: Wait some time and exit the script
+::
 timeout /T 10
