@@ -1,0 +1,13 @@
+##
+# Ingore the following files for Git
+#
+# CHANGELOG:
+# 2018-09-16: .gitignore created and old and oud folders excluded
+#
+##
+
+##
+# oude bestanden
+##
+oud/*
+old/*
