@@ -23,11 +23,64 @@ SET drive=%~d0
 :: Setting the directory and drive of this commandfile
 SET cmd_dir=%~dp0
 
+:: Setting for Error messages
+SET ERROR_MESSAGE=errorfree
+
 :: STATIC VARIABLES
 :: ================
-CALL ..\04_settings\00_name.cmd
-CALL ..\04_settings\02_version.cmd
-CALL ..\04_settings\04_folders.cmd
+CD ..\04_settings\
+
+IF EXIST 00_name.cmd (
+   CALL 00_name.cmd
+) ELSE (
+   SET ERROR_MESSAGE=File with extension name settings doesn't exist
+   GOTO ERROR_EXIT
+)
+
+IF EXIST 02_version.cmd (
+   CALL 02_version.cmd
+) ELSE (
+   SET ERROR_MESSAGE=File with version info settings doesn't exist
+   GOTO ERROR_EXIT
+)
+
+IF EXIST 04_folders.cmd (
+   CALL 04_folders.cmd
+) ELSE (
+   SET ERROR_MESSAGE=File with folder settings doesn't exist
+   GOTO ERROR_EXIT
+)
+
+:: STATIC VARIABLES
+:: ================
+::CALL ..\04_settings\00_name.cmd
+::CALL ..\04_settings\02_version.cmd
+::CALL ..\04_settings\04_folders.cmd
+
+
+:: Check if required environment variables are set correctly
+::
+IF "%extension%"=="" (
+   SET ERROR_MESSAGE=extension not defined in ..\04_settings\00_name.cmd
+   GOTO ERROR_EXIT
+   )
+
+IF "%version%"=="" (
+   SET ERROR_MESSAGE=version not defined in ..\04_settings\02_version.cmd
+   GOTO ERROR_EXIT
+   )
+
+IF "%output_dir%"=="" (
+   SET ERROR_MESSAGE=output_dir not defined in ..\04_settings\04_folders.cmd
+   GOTO ERROR_EXIT
+   )
+
+IF "%backup_dir%"=="" (
+   SET ERROR_MESSAGE=backup_dir not defined in ..\04_settings\04_folders.cmd
+   GOTO ERROR_EXIT
+   )
+
+   
 CD "%cmd_dir%"
 
 :: Sets the proper date and time stamp with 24Hr Time for log file naming convention
@@ -72,6 +125,16 @@ ECHO %me%: Done creating the %extensionprefix%%extension%_%version%.zip extensio
 ECHO %me%: **************************************
 ECHO.
 
+GOTO CLEAN_EXIT
+
+:ERROR_EXIT
+cd "%cmd_dir%" 
+ECHO *******************
+ECHO Error: %ERROR_MESSAGE%
+ECHO *******************
+
+   
+:CLEAN_EXIT   
 :: Wait some time and exit the script
 ::
 timeout /T 10
